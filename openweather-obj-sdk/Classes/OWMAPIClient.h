@@ -10,4 +10,10 @@
 
 @interface OWMAPIClient : NSObject
 
+typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
+
++ (OWMAPIClient *)client;
+
+- (void)getWeatherWithBlock:(OWMClientResponseBlock)block;
+
 @end
