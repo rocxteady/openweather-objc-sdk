@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'OpenWeatherMapiOSExample' do
+  pod 'openweather-obj-sdk', :path => '../'
+
+  target 'OpenWeatherMapiOSExampleTests' do
+    inherit! :search_paths
+
+	pod 'Specta'
+  pod 'Expecta'
+  pod 'FBSnapshotTestCase'
+  pod 'Expecta+Snapshots'
+  end
+end
