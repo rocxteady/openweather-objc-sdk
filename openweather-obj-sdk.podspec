@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
   #   'openweather-obj-sdk' => ['openweather-obj-sdk/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'openweather-obj-sdk/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 	s.dependency 'AFNetworking', '~> 3.1'
 	s.dependency 'JSONModel', '~> 1.7'

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <openweather_obj_sdk/OWMSDK.h>
 
 @interface AppDelegate ()
 
