@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [OWMClient clientWithAppID:@"dc734285acbc53fac9f427cf17f731e8"];
     return YES;
 }
 
