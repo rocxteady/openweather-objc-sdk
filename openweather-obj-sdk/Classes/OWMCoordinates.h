@@ -13,4 +13,6 @@
 @property (assign, nonatomic) double latitude;
 @property (assign, nonatomic) double longitude;
 
+- (instancetype)initWithLatitude:(double)latitude longitude:(double)longitude;
+
 @end

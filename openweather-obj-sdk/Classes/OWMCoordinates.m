@@ -10,6 +10,15 @@
 
 @implementation OWMCoordinates
 
+- (instancetype)initWithLatitude:(double)latitude longitude:(double)longitude {
+    self = [super init];
+    if (self) {
+        _latitude = latitude;
+        _longitude = longitude;
+    }
+    return self;
+}
+
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
                                                                  @"latitude": @"lat",
