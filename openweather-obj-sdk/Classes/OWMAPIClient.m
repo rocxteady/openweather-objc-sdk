@@ -18,6 +18,9 @@ static NSString *const APITypeBoxCity = @"box/city";
 static NSString *const APITypeFind = @"find";
 static NSString *const APITypeGroup = @"group";
 
+static NSString *const APITypeForecast = @"forecast";
+static NSString *const APITypeDailyForecast = @"forecast/daily";
+
 @interface OWMAPIClient ()
 
 @property (strong, nonatomic) AFHTTPSessionManager *manager;
@@ -56,13 +59,17 @@ static NSString *const APITypeGroup = @"group";
      [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"id": @(cityID)} withBlock:block];
 }
 
+- (void)getWeatherByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:block];
+}
+
+- (void)getWeatherByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:block];
+}
+
 - (void)getWeatherByCityIDs:(NSArray *)cityIDs block:(OWMClientResponseBlock)block {
     NSString *cityIDsString = [cityIDs componentsJoinedByString:@","];
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeGroup] withParameters:@{@"id": cityIDsString} withBlock:block];
-}
-
-- (void)getWeatherByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:block];
 }
 
 - (void)getWeatherByRectangleZone:(NSString *)zone block:(OWMClientResponseBlock)block {
@@ -73,8 +80,36 @@ static NSString *const APITypeGroup = @"group";
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeFind] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude), @"cnt": @(count)} withBlock:block];
 }
 
-- (void)getWeatherByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:block];
+- (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"q": cityName} withBlock:block];
+}
+
+- (void)getForecastByCityID:(NSUInteger)cityID block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"id": @(cityID)} withBlock:block];
+}
+
+- (void)getForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:block];
+}
+
+- (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:block];
+}
+
+- (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"q": cityName} withBlock:block];
+}
+
+- (void)getDailyForecastByCityID:(NSUInteger)cityID block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"id": @(cityID)} withBlock:block];
+}
+
+- (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:block];
+}
+
+- (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:block];
 }
 
 - (void)getWithURL:(NSString *)URL withParameters:(id)parameters withBlock:(OWMClientResponseBlock)block{
