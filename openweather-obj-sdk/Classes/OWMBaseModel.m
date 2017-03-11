@@ -14,4 +14,13 @@
     return YES;
 }
 
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+                                                                  @"cod": @"cod",
+                                                                  @"message": @"message",
+                                                                  @"calcTime": @"calctime"
+                                                                  }];
+}
+
+
 @end

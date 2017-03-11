@@ -8,11 +8,14 @@
 
 #import "OWMBaseModel.h"
 
+@protocol OWMWeatherInfo
+@end
+
 @interface OWMWeatherInfo : OWMBaseModel
 
 @property (assign, nonatomic) NSUInteger weatherInfoID;
 @property (strong, nonatomic) NSString *main;
-@property (strong, nonatomic) OWMWeatherInfo *weatherDescription;
+@property (strong, nonatomic) NSString *weatherDescription;
 @property (strong, nonatomic) NSString *icon;
 
 @end

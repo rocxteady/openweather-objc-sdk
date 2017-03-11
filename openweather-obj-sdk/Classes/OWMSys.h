@@ -12,7 +12,6 @@
 
 @property (assign, nonatomic) NSUInteger type;
 @property (assign, nonatomic) NSUInteger sysID;
-@property (assign, nonatomic) double message;
 @property (strong, nonatomic) NSString *country;
 @property (assign, nonatomic) double sunrise;
 @property (assign, nonatomic) double sunset;
