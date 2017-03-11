@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <openweather_obj_sdk/OWMWeather.h>
 
 @interface ViewController ()
 
@@ -17,6 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [OWMWeather getWeatherByCityIds:@[@524901,@703448,@2643743] block:^(OWMWeatherArrayResult *result, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 
