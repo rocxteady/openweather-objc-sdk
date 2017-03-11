@@ -10,6 +10,13 @@
 
 @implementation OWMBaseModel
 
+- (NSString *)cod {
+    if (!_cod) {
+        return @"200";
+    }
+    return _cod;
+}
+
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;
 }
