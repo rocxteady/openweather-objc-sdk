@@ -32,7 +32,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  openweather-obj-sdk: f3abc3bb42ace7a2431188765a63fe71daeb78ae
+  openweather-obj-sdk: 4b16412497e231965065def262ebcfce0d3cc820
 
 PODFILE CHECKSUM: 3dfbf80a6c358a6e2dc55df7e02ce30b75471b02
 
