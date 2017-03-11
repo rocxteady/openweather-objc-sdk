@@ -15,6 +15,7 @@
 		7C6A88021E71594500AD81E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C6A88001E71594500AD81E2 /* LaunchScreen.storyboard */; };
 		7C6A880D1E71594600AD81E2 /* OpenWeatherMapiOSExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A880C1E71594600AD81E2 /* OpenWeatherMapiOSExampleTests.m */; };
 		7C6A88181E71594600AD81E2 /* OpenWeatherMapiOSExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A88171E71594600AD81E2 /* OpenWeatherMapiOSExampleUITests.m */; };
+		7CE2A6801E74726900629751 /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2A67F1E74726900629751 /* SampleSpec.m */; };
 		D9E30065CC8A3D0A183B0E30 /* Pods_OpenWeatherMapiOSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782EA0AE35703159A07BA5D2 /* Pods_OpenWeatherMapiOSExample.framework */; };
 		F2FB8AE4AB0721DAA7F2C744 /* Pods_OpenWeatherMapiOSExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26778B0DF4B8C9E24A8A42C0 /* Pods_OpenWeatherMapiOSExampleTests.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		7C6A88131E71594600AD81E2 /* OpenWeatherMapiOSExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenWeatherMapiOSExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C6A88171E71594600AD81E2 /* OpenWeatherMapiOSExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherMapiOSExampleUITests.m; sourceTree = "<group>"; };
 		7C6A88191E71594600AD81E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CE2A67F1E74726900629751 /* SampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleSpec.m; sourceTree = "<group>"; };
 		C1BEBCB9DEFC5B9C25EDC5DB /* Pods-OpenWeatherMapiOSExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapiOSExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenWeatherMapiOSExample/Pods-OpenWeatherMapiOSExample.release.xcconfig"; sourceTree = "<group>"; };
 		C49003C2A05BEB4E892A1F8E /* Pods-OpenWeatherMapiOSExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapiOSExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenWeatherMapiOSExample/Pods-OpenWeatherMapiOSExample.debug.xcconfig"; sourceTree = "<group>"; };
 		FF6E7AC7A7D785365FEAE849 /* Pods-OpenWeatherMapiOSExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapiOSExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenWeatherMapiOSExampleTests/Pods-OpenWeatherMapiOSExampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		7C6A880B1E71594600AD81E2 /* OpenWeatherMapiOSExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				7CE2A67F1E74726900629751 /* SampleSpec.m */,
 				7C6A880C1E71594600AD81E2 /* OpenWeatherMapiOSExampleTests.m */,
 				7C6A880E1E71594600AD81E2 /* Info.plist */,
 			);
@@ -417,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE2A6801E74726900629751 /* SampleSpec.m in Sources */,
 				7C6A880D1E71594600AD81E2 /* OpenWeatherMapiOSExampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,9 +593,13 @@
 				DEVELOPMENT_TEAM = 3U82SFTT2K;
 				INFOPLIST_FILE = OpenWeatherMapiOSExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ulassancak.OpenWeatherMapiOSExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenWeatherMapiOSExample.app/OpenWeatherMapiOSExample";
+				TEST_HOST = "";
 			};
 			name = Debug;
 		};
@@ -604,9 +612,13 @@
 				DEVELOPMENT_TEAM = 3U82SFTT2K;
 				INFOPLIST_FILE = OpenWeatherMapiOSExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ulassancak.OpenWeatherMapiOSExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenWeatherMapiOSExample.app/OpenWeatherMapiOSExample";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};

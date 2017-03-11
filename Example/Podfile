@@ -6,9 +6,6 @@ target 'OpenWeatherMapiOSExample' do
   target 'OpenWeatherMapiOSExampleTests' do
     inherit! :search_paths
 
-	pod 'Specta'
-  pod 'Expecta'
-  pod 'FBSnapshotTestCase'
-  pod 'Expecta+Snapshots'
+	pod 'Kiwi'
   end
 end
