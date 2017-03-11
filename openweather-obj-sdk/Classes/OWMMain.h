@@ -12,6 +12,8 @@
 
 @property (assign, nonatomic) double temp;
 @property (assign, nonatomic) double pressure;
+@property (assign, nonatomic) double seaLevelPressure;
+@property (assign, nonatomic) double groundLevelpressure;
 @property (assign, nonatomic) double humidity;
 @property (assign, nonatomic) double tempMin;
 @property (assign, nonatomic) double tempMax;

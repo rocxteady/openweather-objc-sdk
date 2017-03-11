@@ -14,6 +14,8 @@
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
                                                                   @"temp": @"temp",
                                                                   @"pressure": @"pressure",
+                                                                  @"seaLevelPressure": @"sea_level",
+                                                                  @"groundLevelPessure": @"grnd_level",
                                                                   @"humidity": @"humidity",
                                                                   @"tempMin": @"temp_min",
                                                                   @"tempMax":  @"temp_max"

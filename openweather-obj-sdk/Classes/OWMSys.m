@@ -15,6 +15,7 @@
                                                                   @"type": @"type",
                                                                   @"typeID": @"id",
                                                                   @"message": @"message",
+                                                                  @"pod": @"pod",
                                                                   @"country": @"country",
                                                                   @"sunrise":  @"sunrise",
                                                                   @"sunset": @"sunset"
