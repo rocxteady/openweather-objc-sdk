@@ -9,6 +9,8 @@
 #import "OWMBaseModel.h"
 #import "OWMWeather.h"
 
+@protocol OWMWeather;
+
 @interface OWMWeatherArrayResult : OWMBaseModel
 
 @property (assign, nonatomic) NSUInteger cnt;
