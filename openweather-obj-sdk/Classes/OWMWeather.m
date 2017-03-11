@@ -131,46 +131,6 @@
     }];
 }
 
-+ (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCityName:cityName countryCode:countryCode block:^(NSDictionary *response, NSError *error) {
-        OWMWeatherArrayResult *result = nil;
-        if (!error) {
-            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
-        }
-        block(result, error);
-    }];
-}
-
-+ (void)getDailyForecastByCityID:(NSUInteger)cityID block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCityID:cityID block:^(NSDictionary *response, NSError *error) {
-        OWMWeatherArrayResult *result = nil;
-        if (!error) {
-            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
-        }
-        block(result, error);
-    }];
-}
-
-+ (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCoordinates:coordinates block:^(NSDictionary *response, NSError *error) {
-        OWMWeatherArrayResult *result = nil;
-        if (!error) {
-            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
-        }
-        block(result, error);
-    }];
-}
-
-+ (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCityZIPCode:ZIPCode countryCode:countryCode block:^(NSDictionary *response, NSError *error) {
-        OWMWeatherArrayResult *result = nil;
-        if (!error) {
-            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
-        }
-        block(result, error);
-    }];
-}
-
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
                                                                   @"coordinates": @"coord",
@@ -180,6 +140,8 @@
                                                                   @"visibility":  @"visibility",
                                                                   @"wind": @"wind",
                                                                   @"clouds": @"clouds",
+                                                                  @"rain": @"rain",
+                                                                  @"snow": @"snow",
                                                                   @"dt": @"dt",
                                                                   @"sys": @"sys",
                                                                   @"weatherID":  @"id",

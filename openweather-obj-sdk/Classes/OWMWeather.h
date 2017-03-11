@@ -13,6 +13,8 @@
 #import "OWMWind.h"
 #import "OWMClouds.h"
 #import "OWMSys.h"
+#import "OWMRain.h"
+#import "OWMSnow.h"
 #import "OWMWeatherArrayResult.h"
 #import "OWMWeatherCycleArrayResult.h"
 
@@ -36,6 +38,8 @@ typedef void(^OWMWeatherCycleArrayResultBlock)(OWMWeatherCycleArrayResult *resul
 @property (assign, nonatomic) NSUInteger visibility;
 @property (strong, nonatomic) OWMWind *wind;
 @property (strong, nonatomic) OWMClouds *clouds;
+@property (strong, nonatomic) OWMClouds *rain;
+@property (strong, nonatomic) OWMClouds *snow;
 @property (assign, nonatomic) double dt;
 @property (strong, nonatomic) OWMSys *sys;
 @property (assign, nonatomic) NSUInteger weatherID;
@@ -70,16 +74,6 @@ typedef void(^OWMWeatherCycleArrayResultBlock)(OWMWeatherCycleArrayResult *resul
 + (void)getForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherArrayResultBlock)block;
 
 + (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block;
-
-//Call 16 day / daily forecast data
-
-+ (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getDailyForecastByCityID:(NSUInteger)cityID block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block;
 
 
 @end
