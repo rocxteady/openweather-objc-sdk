@@ -31,8 +31,6 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 
 - (void)getWeatherByCycleZoneWithCoordinates:(OWMCoordinates *)coordinates countOfCity:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
-- (void)getWeatherByCityZIPCode:(NSString *)ZIPCode block:(OWMClientResponseBlock)block;
-
 - (void)getWeatherByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block;
 
 
