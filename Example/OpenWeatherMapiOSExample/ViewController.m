@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <openweather_obj_sdk/OWMWeather.h>
+#import <openweather_obj_sdk/OWMDailyForecastWeather.h>
 
 @interface ViewController ()
 
@@ -18,7 +18,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [OWMWeather getWeatherByCityIds:@[@524901,@703448,@2643743] block:^(OWMWeatherArrayResult *result, NSError *error) {
+    [OWMDailyForecastWeather getDailyForecastByCityName:@"istanbul" countryCode:@"tr" block:^(OWMDailyForecastResult *result, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    [OWMDailyForecastWeather getDailyForecastByCityID:524901 block:^(OWMDailyForecastResult *result, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    [OWMDailyForecastWeather getDailyForecastByCityZIPCode:@"34188" countryCode:@"tr" block:^(OWMDailyForecastResult *result, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    [OWMDailyForecastWeather getDailyForecastByCoordinates:[[OWMCoordinates alloc] initWithLatitude:41.0 longitude:29.0]  block:^(OWMDailyForecastResult *result, NSError *error) {
         if (error) {
             NSLog(@"%@", error.localizedDescription);
         }
