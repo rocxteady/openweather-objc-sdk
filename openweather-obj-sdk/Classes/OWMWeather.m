@@ -91,8 +91,8 @@
     }];
 }
 
-+ (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getForecastByCityName:cityName countryCode:countryCode block:^(NSDictionary *response, NSError *error) {
++ (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    [[OWMAPIClient client] getForecastByCityName:cityName countryCode:countryCode limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMWeatherArrayResult *result = nil;
         if (!error) {
             result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
@@ -101,8 +101,8 @@
     }];
 }
 
-+ (void)getForecastByCityID:(NSUInteger)cityID block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getForecastByCityID:cityID block:^(NSDictionary *response, NSError *error) {
++ (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    [[OWMAPIClient client] getForecastByCityID:cityID limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMWeatherArrayResult *result = nil;
         if (!error) {
             result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
@@ -111,8 +111,8 @@
     }];
 }
 
-+ (void)getForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getForecastByCoordinates:coordinates block:^(NSDictionary *response, NSError *error) {
++ (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    [[OWMAPIClient client] getForecastByCoordinates:coordinates limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMWeatherArrayResult *result = nil;
         if (!error) {
             result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
@@ -121,8 +121,8 @@
     }];
 }
 
-+ (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block {
-    [[OWMAPIClient client] getForecastByCityZIPCode:ZIPCode countryCode:countryCode block:^(NSDictionary *response, NSError *error) {
++ (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    [[OWMAPIClient client] getForecastByCityZIPCode:ZIPCode countryCode:countryCode limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMWeatherArrayResult *result = nil;
         if (!error) {
             result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];

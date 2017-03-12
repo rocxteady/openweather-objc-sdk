@@ -10,8 +10,6 @@
 
 @interface OWMBaseModel : JSONModel
 
-@property (strong, nonatomic) NSString *cod;
-@property (strong, nonatomic) NSString *message;
-@property (assign, nonatomic) double calcTime;
+
 
 @end

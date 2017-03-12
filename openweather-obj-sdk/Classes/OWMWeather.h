@@ -6,7 +6,7 @@
 //  Copyright © 2017 Ulaş Sancak. All rights reserved.
 //
 
-#import "OWMBaseModel.h"
+#import "OWMBaseResult.h"
 #import "OWMCoordinates.h"
 #import "OWMWeatherInfo.h"
 #import "OWMMain.h"
@@ -29,7 +29,7 @@ typedef void(^OWMWeatherBlock)(OWMWeather *weatherData, NSError *error);
 typedef void(^OWMWeatherArrayResultBlock)(OWMWeatherArrayResult *result, NSError *error);
 typedef void(^OWMWeatherCycleArrayResultBlock)(OWMWeatherCycleArrayResult *result, NSError *error);
 
-@interface OWMWeather : OWMBaseModel
+@interface OWMWeather : OWMBaseResult
 
 @property (strong, nonatomic) OWMCoordinates *coordinates;
 @property (strong, nonatomic) NSArray <OWMWeatherInfo> *weatherInfos;
@@ -67,13 +67,13 @@ typedef void(^OWMWeatherCycleArrayResultBlock)(OWMWeatherCycleArrayResult *resul
 
 //Call 5 day / 3 hour forecast data
 
-+ (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block;
++ (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
 
-+ (void)getForecastByCityID:(NSUInteger)cityID block:(OWMWeatherArrayResultBlock)block;
++ (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
 
-+ (void)getForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherArrayResultBlock)block;
++ (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
 
-+ (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherArrayResultBlock)block;
++ (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
 
 
 @end

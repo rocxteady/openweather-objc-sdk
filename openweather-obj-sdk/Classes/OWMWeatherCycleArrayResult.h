@@ -6,12 +6,12 @@
 //
 //
 
-#import "OWMBaseModel.h"
+#import "OWMBaseResult.h"
 #import "OWMWeather.h"
 
 @protocol OWMWeather;
 
-@interface OWMWeatherCycleArrayResult : OWMBaseModel
+@interface OWMWeatherCycleArrayResult : OWMBaseResult
 
 @property (assign, nonatomic) NSUInteger count;
 @property (strong, nonatomic) NSArray <OWMWeather> *weatherDatas;

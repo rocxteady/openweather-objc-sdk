@@ -10,24 +10,8 @@
 
 @implementation OWMBaseModel
 
-- (NSString *)cod {
-    if (!_cod) {
-        return @"200";
-    }
-    return _cod;
-}
-
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;
 }
-
-+ (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
-                                                                  @"cod": @"cod",
-                                                                  @"message": @"message",
-                                                                  @"calcTime": @"calctime"
-                                                                  }];
-}
-
 
 @end

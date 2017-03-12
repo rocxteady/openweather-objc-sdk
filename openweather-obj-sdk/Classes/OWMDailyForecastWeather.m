@@ -11,8 +11,8 @@
 
 @implementation OWMDailyForecastWeather
 
-+ (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherDailyForecastResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCityName:cityName countryCode:countryCode block:^(NSDictionary *response, NSError *error) {
++ (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    [[OWMAPIClient client] getDailyForecastByCityName:cityName countryCode:countryCode limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMDailyForecastResult *result = nil;
         if (!error) {
             result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];
@@ -21,8 +21,8 @@
     }];
 }
 
-+ (void)getDailyForecastByCityID:(NSUInteger)cityID block:(OWMWeatherDailyForecastResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCityID:cityID block:^(NSDictionary *response, NSError *error) {
++ (void)getDailyForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    [[OWMAPIClient client] getDailyForecastByCityID:cityID limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMDailyForecastResult *result = nil;
         if (!error) {
             result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];
@@ -31,8 +31,8 @@
     }];
 }
 
-+ (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherDailyForecastResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCoordinates:coordinates block:^(NSDictionary *response, NSError *error) {
++ (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    [[OWMAPIClient client] getDailyForecastByCoordinates:coordinates limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMDailyForecastResult *result = nil;
         if (!error) {
             result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];
@@ -41,8 +41,8 @@
     }];
 }
 
-+ (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherDailyForecastResultBlock)block {
-    [[OWMAPIClient client] getDailyForecastByCityZIPCode:ZIPCode countryCode:countryCode block:^(NSDictionary *response, NSError *error) {
++ (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    [[OWMAPIClient client] getDailyForecastByCityZIPCode:ZIPCode countryCode:countryCode limitResultByCount:count block:^(NSDictionary *response, NSError *error) {
         OWMDailyForecastResult *result = nil;
         if (!error) {
             result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];

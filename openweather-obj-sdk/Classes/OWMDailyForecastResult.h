@@ -6,13 +6,13 @@
 //
 //
 
-#import "OWMBaseModel.h"
+#import "OWMBaseResult.h"
 #import "OWMCity.h"
 #import "OWMDailyForecastWeather.h"
 
 @protocol OWMDailyForecastWeather;
 
-@interface OWMDailyForecastResult : OWMBaseModel
+@interface OWMDailyForecastResult : OWMBaseResult
 
 @property (assign, nonatomic) NSUInteger cnt;
 @property (strong, nonatomic) NSArray <OWMDailyForecastWeather> *weatherDatas;

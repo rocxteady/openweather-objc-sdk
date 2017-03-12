@@ -6,7 +6,7 @@
 //
 //
 
-#import "OWMBaseModel.h"
+#import "OWMBaseResult.h"
 #import "OWMTemperature.h"
 #import "OWMWeatherInfo.h"
 #import "OWMDailyForecastResult.h"
@@ -18,7 +18,7 @@
 
 typedef void(^OWMWeatherDailyForecastResultBlock)(OWMDailyForecastResult *result, NSError *error);
 
-@interface OWMDailyForecastWeather : OWMBaseModel
+@interface OWMDailyForecastWeather : OWMBaseResult
 
 @property (strong, nonatomic) NSArray <OWMWeatherInfo> *weatherInfos;
 @property (assign, nonatomic) double windSpeed;
@@ -33,12 +33,12 @@ typedef void(^OWMWeatherDailyForecastResultBlock)(OWMDailyForecastResult *result
 
 //Call 16 day / daily forecast data
 
-+ (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherDailyForecastResultBlock)block;
++ (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block;
 
-+ (void)getDailyForecastByCityID:(NSUInteger)cityID block:(OWMWeatherDailyForecastResultBlock)block;
++ (void)getDailyForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block;
 
-+ (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherDailyForecastResultBlock)block;
++ (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block;
 
-+ (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherDailyForecastResultBlock)block;
++ (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block;
 
 @end

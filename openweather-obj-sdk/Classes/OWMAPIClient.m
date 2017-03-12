@@ -9,6 +9,7 @@
 #import "OWMAPIClient.h"
 #import <AFNetworking/AFNetworking.h>
 #import "OWMClient.h"
+#import "OWMParams.h"
 
 static NSString *const BaseURL = @"http://api.openweathermap.org";
 static NSString *const DataURI = @"data";
@@ -80,41 +81,78 @@ static NSString *const APITypeDailyForecast = @"forecast/daily";
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeFind] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude), @"cnt": @(count)} withBlock:block];
 }
 
-- (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"q": cityName} withBlock:block];
+- (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
 }
 
-- (void)getForecastByCityID:(NSUInteger)cityID block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"id": @(cityID)} withBlock:block];
+- (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(cityID), @"id", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
 }
 
-- (void)getForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:block];
+- (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(coordinates.latitude), @"lat", @(coordinates.longitude), @"lon", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
 }
 
-- (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:block];
+- (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode], @"zip", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
 }
 
-- (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"q": cityName} withBlock:block];
+- (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
 }
 
-- (void)getDailyForecastByCityID:(NSUInteger)cityID block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"id": @(cityID)} withBlock:block];
+- (void)getDailyForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(cityID), @"id", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
 }
 
-- (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:block];
+- (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(coordinates.latitude), @"lat", @(coordinates.longitude), @"lon", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
 }
 
-- (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:block];
+- (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode], @"zip", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
 }
 
 - (void)getWithURL:(NSString *)URL withParameters:(id)parameters withBlock:(OWMClientResponseBlock)block{
     parameters = [parameters mutableCopy];
     parameters[@"appid"] = [OWMClient client].AppID;
+    NSDictionary *params = [OWMParams defaultParams].toDictionary;
+    if (params.count > 0) {
+         [parameters addEntriesFromDictionary:params];
+    }
+    
     [_manager GET:URL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         block(responseObject, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

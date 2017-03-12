@@ -37,22 +37,22 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 
 //Call 5 day / 3 hour forecast data
 
-- (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block;
+- (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
-- (void)getForecastByCityID:(NSUInteger)cityID block:(OWMClientResponseBlock)block;
+- (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
-- (void)getForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block;
+- (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
-- (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block;
+- (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
 //Call 16 day / daily forecast data
 
-- (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block;
+- (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
-- (void)getDailyForecastByCityID:(NSUInteger)cityID block:(OWMClientResponseBlock)block;
+- (void)getDailyForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
-- (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block;
+- (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
-- (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block;
+- (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block;
 
 @end
