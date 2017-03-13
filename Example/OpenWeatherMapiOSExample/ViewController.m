@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <openweather_obj_sdk/OWMDailyForecastWeather.h>
+#import <openweather_obj_sdk/OWMAPIClient.h>
 
 @interface ViewController ()
 
@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [OWMDailyForecastWeather getDailyForecastByCityName:@"istanbul" countryCode:@"tr" limitResultByCount:0 block:^(OWMDailyForecastResult *result, NSError *error) {
+    [[OWMAPIClient client] getDailyForecastByCityName:@"istanbul" countryCode:@"tr" limitResultByCount:0 block:^(OWMDailyForecastResult *result, NSError *error) {
         if (error) {
             NSLog(@"%@", error.localizedDescription);
         }
