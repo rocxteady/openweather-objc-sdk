@@ -22,6 +22,8 @@ static NSString *const APITypeGroup = @"group";
 static NSString *const APITypeForecast = @"forecast";
 static NSString *const APITypeDailyForecast = @"forecast/daily";
 
+typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
+
 @interface OWMAPIClient ()
 
 @property (strong, nonatomic) AFHTTPSessionManager *manager;
@@ -48,101 +50,205 @@ static NSString *const APITypeDailyForecast = @"forecast/daily";
     return self;
 }
 
-- (void)getWeatherByCityName:(NSString *)cityName block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"q": cityName} withBlock:block];
+- (void)getWeatherByCityName:(NSString *)cityName block:(OWMWeatherBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"q": cityName} withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeather *weatherData = nil;
+        if (!error) {
+            weatherData = [[OWMWeather alloc] initWithDictionary:response error:&error];
+        }
+        block(weatherData, error);
+    }];
 }
 
-- (void)getWeatherByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"q": [NSString stringWithFormat:@"%@,%@", cityName, countryCode]} withBlock:block];
+- (void)getWeatherByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"q": [NSString stringWithFormat:@"%@,%@", cityName, countryCode]} withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeather *weatherData = nil;
+        if (!error) {
+            weatherData = [[OWMWeather alloc] initWithDictionary:response error:&error];
+        }
+        block(weatherData, error);
+    }];
 }
 
-- (void)getWeatherByCityID:(NSUInteger)cityID block:(OWMClientResponseBlock)block {
-     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"id": @(cityID)} withBlock:block];
+- (void)getWeatherByCityID:(NSUInteger)cityID block:(OWMWeatherBlock)block {
+     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"id": @(cityID)} withBlock:^(NSDictionary *response, NSError *error) {
+         OWMWeather *weatherData = nil;
+         if (!error) {
+             weatherData = [[OWMWeather alloc] initWithDictionary:response error:&error];
+         }
+         block(weatherData, error);
+     }];
 }
 
-- (void)getWeatherByCoordinates:(OWMCoordinates *)coordinates block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:block];
+- (void)getWeatherByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeather *weatherData = nil;
+        if (!error) {
+            weatherData = [[OWMWeather alloc] initWithDictionary:response error:&error];
+        }
+        block(weatherData, error);
+    }];
 }
 
-- (void)getWeatherByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:block];
+- (void)getWeatherByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeather *weatherData = nil;
+        if (!error) {
+            weatherData = [[OWMWeather alloc] initWithDictionary:response error:&error];
+        }
+        block(weatherData, error);
+    }];
 }
 
-- (void)getWeatherByCityIDs:(NSArray *)cityIDs block:(OWMClientResponseBlock)block {
+- (void)getWeatherByCityIDs:(NSArray *)cityIDs limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
     NSString *cityIDsString = [cityIDs componentsJoinedByString:@","];
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeGroup] withParameters:@{@"id": cityIDsString} withBlock:block];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityIDsString, @"id", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeGroup] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeatherArrayResult *result = nil;
+        if (!error) {
+            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getWeatherByRectangleZone:(NSString *)zone block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeBoxCity] withParameters:@{@"bbox": zone} withBlock:block];
+- (void)getWeatherByRectangleZone:(NSString *)zone limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:zone, @"bbox", nil];
+    if (count > 0) {
+        params[@"cnt"] = @(count);
+    }
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeBoxCity] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeatherArrayResult *result = nil;
+        if (!error) {
+            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getWeatherByCycleZoneWithCoordinates:(OWMCoordinates *)coordinates countOfCity:(NSUInteger)count block:(OWMClientResponseBlock)block {
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeFind] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude), @"cnt": @(count)} withBlock:block];
+- (void)getWeatherByCycleZoneWithCoordinates:(OWMCoordinates *)coordinates countOfCity:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeFind] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude), @"cnt": @(count)} withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeatherArrayResult *result = nil;
+        if (!error) {
+            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeatherArrayResult *result = nil;
+        if (!error) {
+            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(cityID), @"id", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeatherArrayResult *result = nil;
+        if (!error) {
+            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(coordinates.latitude), @"lat", @(coordinates.longitude), @"lon", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeatherArrayResult *result = nil;
+        if (!error) {
+            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode], @"zip", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMWeatherArrayResult *result = nil;
+        if (!error) {
+            result = [[OWMWeatherArrayResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMDailyForecastResult *result = nil;
+        if (!error) {
+            result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getDailyForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getDailyForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(cityID), @"id", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMDailyForecastResult *result = nil;
+        if (!error) {
+            result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(coordinates.latitude), @"lat", @(coordinates.longitude), @"lon", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMDailyForecastResult *result = nil;
+        if (!error) {
+            result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
-- (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMClientResponseBlock)block {
+- (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode], @"zip", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
     }
-    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:block];
+    [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeDailyForecast] withParameters:params withBlock:^(NSDictionary *response, NSError *error) {
+        OWMDailyForecastResult *result = nil;
+        if (!error) {
+            result = [[OWMDailyForecastResult alloc] initWithDictionary:response error:&error];
+        }
+        block(result, error);
+    }];
 }
 
 - (void)getWithURL:(NSString *)URL withParameters:(id)parameters withBlock:(OWMClientResponseBlock)block{

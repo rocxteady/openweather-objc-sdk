@@ -15,65 +15,65 @@
 #import "OWMSys.h"
 #import "OWMRain.h"
 #import "OWMSnow.h"
-#import "OWMWeatherArrayResult.h"
-#import "OWMWeatherCycleArrayResult.h"
 
 @protocol OWMWeather
 @end
 
-@class OWMWeather;
-@class OWMWeatherArrayResult;
-@class OWMWeatherCycleArrayResult;
-
-typedef void(^OWMWeatherBlock)(OWMWeather *weatherData, NSError *error);
-typedef void(^OWMWeatherArrayResultBlock)(OWMWeatherArrayResult *result, NSError *error);
-typedef void(^OWMWeatherCycleArrayResultBlock)(OWMWeatherCycleArrayResult *result, NSError *error);
-
+/**
+ Weather data model for the current weather API
+ */
 @interface OWMWeather : OWMBaseResult
 
+/**
+ Coordinates of the related ciyu
+ */
 @property (strong, nonatomic) OWMCoordinates *coordinates;
+
+/**
+ Weather condition codes and infos
+ */
 @property (strong, nonatomic) NSArray <OWMWeatherInfo> *weatherInfos;
 @property (strong, nonatomic) NSString *base;
+
+/**
+ Main weather parameters
+ */
 @property (strong, nonatomic) OWMMain *main;
+
+/**
+ Visibility, meter
+ */
 @property (assign, nonatomic) NSUInteger visibility;
+
+/**
+ Wind model. More info: OWMWind
+ */
 @property (strong, nonatomic) OWMWind *wind;
+
+/**
+ Clouds model. Cloudiness, %. More info: OWMClouds
+ */
 @property (strong, nonatomic) OWMClouds *clouds;
-@property (strong, nonatomic) OWMClouds *rain;
-@property (strong, nonatomic) OWMClouds *snow;
-@property (assign, nonatomic) double dt;
+
+/**
+ Rain model. Rain volume for the last 3 hours. More info: OWMRain.
+ */
+@property (strong, nonatomic) OWMRain *rain;
+/**
+ Snow model. Snow volume for the last 3 hours. More info: OWMSnow.
+ */
+@property (strong, nonatomic) OWMSnow *snow;
+
+/**
+ Time of data calculation, unix, UTC
+ */
+@property (assign, nonatomic) double dataTime;
 @property (strong, nonatomic) OWMSys *sys;
-@property (assign, nonatomic) NSUInteger weatherID;
-@property (strong, nonatomic) NSString *name;
 
-//Call current weather data for one location
-
-+ (void)getWeatherByCityName:(NSString *)cityName block:(OWMWeatherBlock)block;
-
-+ (void)getWeatherByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherBlock)block;
-
-+ (void)getWeatherByCityID:(NSUInteger)cityID block:(OWMWeatherBlock)block;
-
-+ (void)getWeatherByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherBlock)block;
-
-+ (void)getWeatherByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherBlock)block;
-
-//Call current weather data for several cities
-
-+ (void)getWeatherByRectangleZone:(NSString *)zone block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getWeatherByCityIds:(NSArray *)cityIds block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getWeatherByCycleZoneWithCoordinates:(OWMCoordinates *)coordinates countOfCity:(NSUInteger)count block:(OWMWeatherCycleArrayResultBlock)block;
-
-//Call 5 day / 3 hour forecast data
-
-+ (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
-
-+ (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block;
-
+/**
+ City ID
+ */
+@property (assign, nonatomic) NSUInteger cityID;
+@property (strong, nonatomic) NSString *cityName;
 
 @end
