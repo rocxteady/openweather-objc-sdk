@@ -13,11 +13,12 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
                                                                   @"dataTime": @"dt",
+                                                                  @"dataTimeText": @"dt_text",
                                                                   @"temperature": @"temp",
                                                                   @"pressure": @"pressure",
                                                                   @"humidity": @"humidity",
                                                                   @"weatherInfos":  @"weather",
-                                                                  @"windSpeed": @"wind",
+                                                                  @"windSpeed": @"speed",
                                                                   @"clouds": @"clouds",
                                                                   @"rain": @"rain",
                                                                   @"snow": @"snow",

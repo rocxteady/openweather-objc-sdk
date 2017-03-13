@@ -15,7 +15,7 @@
                                                                   @"temp": @"temp",
                                                                   @"pressure": @"pressure",
                                                                   @"seaLevelPressure": @"sea_level",
-                                                                  @"groundLevelPessure": @"grnd_level",
+                                                                  @"groundLevelPressure": @"grnd_level",
                                                                   @"humidity": @"humidity",
                                                                   @"tempMin": @"temp_min",
                                                                   @"tempMax":  @"temp_max"

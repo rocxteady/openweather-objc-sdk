@@ -15,7 +15,8 @@
                                                                   @"cityID": @"id",
                                                                   @"name": @"name",
                                                                   @"coordinates": @"coord",
-                                                                  @"country": @"country"
+                                                                  @"country": @"country",
+                                                                  @"population": @"population"
                                                                   }];
 }
 

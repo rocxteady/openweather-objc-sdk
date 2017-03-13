@@ -34,4 +34,9 @@
  */
 @property (strong, nonatomic) NSString *country;
 
+/**
+ The population of the city
+ */
+@property (assign, nonatomic) NSUInteger population;
+
 @end

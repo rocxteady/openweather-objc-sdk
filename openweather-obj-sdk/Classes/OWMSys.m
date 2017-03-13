@@ -13,7 +13,7 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
                                                                   @"type": @"type",
-                                                                  @"typeID": @"id",
+                                                                  @"sysID": @"id",
                                                                   @"message": @"message",
                                                                   @"pod": @"pod",
                                                                   @"countryCode": @"country",

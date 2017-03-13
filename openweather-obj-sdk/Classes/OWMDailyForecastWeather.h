@@ -49,6 +49,11 @@
 @property (assign, nonatomic) double dataTime;
 
 /**
+ String time of data forecasted
+ */
+@property (assign, nonatomic) NSString *dataTimeText;
+
+/**
  Temperature model. (Min, max etc.)
  */
 @property (strong, nonatomic) OWMTemperature *temperature;

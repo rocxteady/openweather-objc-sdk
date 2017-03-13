@@ -32,7 +32,7 @@
 /**
  Atmospheric pressure on the ground level, hPa
  */
-@property (assign, nonatomic) double groundLevelpressure;
+@property (assign, nonatomic) double groundLevelPressure;
 
 /**
  Humidity, %
