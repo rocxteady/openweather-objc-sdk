@@ -69,7 +69,7 @@
 }
 
 + (BOOL)propertyIsIgnored:(NSString *)propertyName {
-    if ([propertyName isEqual:@"searchAccuracy"] || [propertyName isEqual:@"unitsFormat"]) {
+    if ([propertyName isEqual:@"searchAccuracy"] || [propertyName isEqual:@"unitsFormat"]) {
         return YES;
     }
     return [super propertyIsIgnored:propertyName];
