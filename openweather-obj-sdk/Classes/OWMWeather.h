@@ -74,6 +74,9 @@
  City ID
  */
 @property (assign, nonatomic) NSUInteger cityID;
+/**
+ City Name
+ */
 @property (strong, nonatomic) NSString *cityName;
 
 @end

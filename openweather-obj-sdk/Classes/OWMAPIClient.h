@@ -17,6 +17,7 @@
  */
 @interface OWMAPIClient : NSObject
 
+//Response blocks
 typedef void(^OWMWeatherBlock)(OWMWeather *weatherData, NSError *error);
 typedef void(^OWMWeatherArrayResultBlock)(OWMWeatherArrayResult *result, NSError *error);
 typedef void(^OWMWeatherDailyForecastResultBlock)(OWMDailyForecastResult *result, NSError *error);

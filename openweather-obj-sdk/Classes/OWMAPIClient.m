@@ -22,6 +22,7 @@ static NSString *const APITypeGroup = @"group";
 static NSString *const APITypeForecast = @"forecast";
 static NSString *const APITypeDailyForecast = @"forecast/daily";
 
+//Response block of HTTP requests
 typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 
 @interface OWMAPIClient ()
@@ -32,6 +33,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 
 
 @implementation OWMAPIClient
+
+#pragma mark - Initialization
 
 + (OWMAPIClient *)client {
     static OWMAPIClient *client;
@@ -49,6 +52,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
     }
     return self;
 }
+
+#pragma mark - Current Weather
 
 - (void)getWeatherByCityName:(NSString *)cityName block:(OWMWeatherBlock)block {
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"q": cityName} withBlock:^(NSDictionary *response, NSError *error) {
@@ -100,6 +105,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
     }];
 }
 
+#pragma mark - Current Weather for Several Cities
+
 - (void)getWeatherByCityIDs:(NSArray *)cityIDs limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
     NSString *cityIDsString = [cityIDs componentsJoinedByString:@","];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityIDsString, @"id", nil];
@@ -138,6 +145,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
         block(result, error);
     }];
 }
+
+#pragma mark - Hourly Forecast
 
 - (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
@@ -195,6 +204,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
     }];
 }
 
+#pragma mark - Daily Forecast
+
 - (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
     if (count > 0) {
@@ -250,6 +261,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
         block(result, error);
     }];
 }
+
+#pragma mark - General HTTP Get Request
 
 - (void)getWithURL:(NSString *)URL withParameters:(id)parameters withBlock:(OWMClientResponseBlock)block{
     parameters = [parameters mutableCopy];

@@ -12,9 +12,21 @@
 
 @property (assign, nonatomic) NSUInteger type;
 @property (assign, nonatomic) NSUInteger sysID;
+
+/**
+ Country code (GB, JP etc.)
+ */
 @property (strong, nonatomic) NSString *countryCode;
 @property (strong, nonatomic) NSString *pod;
+
+/**
+ Sunrise time, unix, UTC
+ */
 @property (assign, nonatomic) NSTimeInterval sunriseTime;
+
+/**
+ Sunset time, unix, UTC
+ */
 @property (assign, nonatomic) NSTimeInterval sunsetTime;
 
 @end
