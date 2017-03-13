@@ -10,6 +10,4 @@
 
 @interface OWMBaseModel : JSONModel
 
-
-
 @end

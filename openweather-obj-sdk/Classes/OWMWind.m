@@ -13,7 +13,7 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
                                                                   @"speed": @"speed",
-                                                                  @"deg": @"deg"
+                                                                  @"direction": @"deg"
                                                                   }];
 }
 

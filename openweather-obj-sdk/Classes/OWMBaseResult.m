@@ -10,17 +10,16 @@
 
 @implementation OWMBaseResult
 
-- (NSString *)cod {
-    if (!_cod) {
+- (NSString *)code {
+    if (!_code) {
         return @"200";
     }
-    return _cod;
+    return _code;
 }
-
 
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
-                                                                  @"cod": @"cod",
+                                                                  @"code": @"cod",
                                                                   @"message": @"message",
                                                                   @"calcTime": @"calctime"
                                                                   }];

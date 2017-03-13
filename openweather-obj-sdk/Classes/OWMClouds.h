@@ -10,6 +10,9 @@
 
 @interface OWMClouds : OWMBaseModel
 
+/**
+ Cloudiness by percentage
+ */
 @property (assign, nonatomic) NSUInteger all;
 
 @end

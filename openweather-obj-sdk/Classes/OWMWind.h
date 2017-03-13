@@ -10,7 +10,14 @@
 
 @interface OWMWind : OWMBaseModel
 
+/**
+ Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
+ */
 @property (assign, nonatomic) double speed;
-@property (assign, nonatomic) NSUInteger deg;
+
+/**
+ Wind direction, degrees (meteorological)
+ */
+@property (assign, nonatomic) NSUInteger direction;
 
 @end
