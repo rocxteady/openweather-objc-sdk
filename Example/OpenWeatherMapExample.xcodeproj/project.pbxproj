@@ -17,7 +17,6 @@
 		7C6A88181E71594600AD81E2 /* OpenWeatherMapiOSExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A88171E71594600AD81E2 /* OpenWeatherMapiOSExampleUITests.m */; };
 		7CE2A6801E74726900629751 /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2A67F1E74726900629751 /* SampleSpec.m */; };
 		D9E30065CC8A3D0A183B0E30 /* Pods_OpenWeatherMapiOSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782EA0AE35703159A07BA5D2 /* Pods_OpenWeatherMapiOSExample.framework */; };
-		F2FB8AE4AB0721DAA7F2C744 /* Pods_OpenWeatherMapiOSExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26778B0DF4B8C9E24A8A42C0 /* Pods_OpenWeatherMapiOSExampleTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05F44472509FFDBDCFCBA655 /* Pods-OpenWeatherMapiOSExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapiOSExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenWeatherMapiOSExampleTests/Pods-OpenWeatherMapiOSExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		26778B0DF4B8C9E24A8A42C0 /* Pods_OpenWeatherMapiOSExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenWeatherMapiOSExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		782EA0AE35703159A07BA5D2 /* Pods_OpenWeatherMapiOSExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenWeatherMapiOSExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C6A87F01E71594500AD81E2 /* OpenWeatherMapiOSExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherMapiOSExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +58,6 @@
 		7CE2A67F1E74726900629751 /* SampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleSpec.m; sourceTree = "<group>"; };
 		C1BEBCB9DEFC5B9C25EDC5DB /* Pods-OpenWeatherMapiOSExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapiOSExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenWeatherMapiOSExample/Pods-OpenWeatherMapiOSExample.release.xcconfig"; sourceTree = "<group>"; };
 		C49003C2A05BEB4E892A1F8E /* Pods-OpenWeatherMapiOSExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapiOSExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenWeatherMapiOSExample/Pods-OpenWeatherMapiOSExample.debug.xcconfig"; sourceTree = "<group>"; };
-		FF6E7AC7A7D785365FEAE849 /* Pods-OpenWeatherMapiOSExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapiOSExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenWeatherMapiOSExampleTests/Pods-OpenWeatherMapiOSExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2FB8AE4AB0721DAA7F2C744 /* Pods_OpenWeatherMapiOSExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +156,6 @@
 			children = (
 				C49003C2A05BEB4E892A1F8E /* Pods-OpenWeatherMapiOSExample.debug.xcconfig */,
 				C1BEBCB9DEFC5B9C25EDC5DB /* Pods-OpenWeatherMapiOSExample.release.xcconfig */,
-				05F44472509FFDBDCFCBA655 /* Pods-OpenWeatherMapiOSExampleTests.debug.xcconfig */,
-				FF6E7AC7A7D785365FEAE849 /* Pods-OpenWeatherMapiOSExampleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -202,12 +196,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C6A881D1E71594600AD81E2 /* Build configuration list for PBXNativeTarget "OpenWeatherMapiOSExampleTests" */;
 			buildPhases = (
-				D01449873D2179610495FCF5 /* [CP] Check Pods Manifest.lock */,
 				7C6A88041E71594500AD81E2 /* Sources */,
 				7C6A88051E71594500AD81E2 /* Frameworks */,
 				7C6A88061E71594500AD81E2 /* Resources */,
-				15DB8A28AA4A43E172386DD8 /* [CP] Embed Pods Frameworks */,
-				B65D06D3481060323622CFEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -313,52 +304,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		15DB8A28AA4A43E172386DD8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenWeatherMapiOSExampleTests/Pods-OpenWeatherMapiOSExampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5B12654C0B36E2DB4BD39F30 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B65D06D3481060323622CFEB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenWeatherMapiOSExampleTests/Pods-OpenWeatherMapiOSExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D01449873D2179610495FCF5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -586,7 +532,6 @@
 		};
 		7C6A881E1E71594600AD81E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05F44472509FFDBDCFCBA655 /* Pods-OpenWeatherMapiOSExampleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -605,7 +550,6 @@
 		};
 		7C6A881F1E71594600AD81E2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF6E7AC7A7D785365FEAE849 /* Pods-OpenWeatherMapiOSExampleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
