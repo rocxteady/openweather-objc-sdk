@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint openweather-obj-sdk.podspec' to ensure this is a
+# Be sure to run `pod lib lint openweathermap-objc-sdk.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'openweather-obj-sdk'
+  s.name             = 'openweathermap-objc-sdk'
   s.version          = '0.1.0'
   s.summary          = 'Unofficial Objective C SDK for OpenWeatherMap.'
 
@@ -22,22 +22,22 @@ Pod::Spec.new do |s|
 	and related REST API GET methods.
                        DESC
 
-  s.homepage         = 'https://github.com/rocxteady/openweather-objc-sdk'
+  s.homepage         = 'https://github.com/rocxteady/openweathermap-objc-sdk'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ulaş Sancak' => 'ulas.sancak@hotmail.com.tr' }
-  s.source           = { :git => 'https://github.com/rocxteady/openweather-objc-sdk.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/rocxteady/openweathermap-objc-sdk.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/rocxteady'
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'openweather-obj-sdk/Classes/**/*'
+  s.source_files = 'openweathermap-objc-sdk/Classes/**/*'
   
   # s.resource_bundles = {
-  #   'openweather-obj-sdk' => ['openweather-obj-sdk/Assets/*.png']
+  #   'openweathermap-objc-sdk' => ['openweathermap-objc-sdk/Assets/*.png']
   # }
 
-  s.public_header_files = 'openweather-obj-sdk/Classes/**/*.h'
+  s.public_header_files = 'openweathermap-objc-sdk/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 	s.dependency 'AFNetworking', '~> 3.1'
 	s.dependency 'JSONModel', '~> 1.7'

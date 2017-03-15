@@ -1,10 +1,5 @@
 use_frameworks!
 
 target 'OpenWeatherMapiOSExample' do
-  pod 'openweather-obj-sdk', :path => '../'
-#  target 'OpenWeatherMapiOSExampleTests' do
-#    inherit! :search_paths
-#
-#	pod 'Kiwi'
-#  end
+  pod 'openweathermap-objc-sdk', :path => '../'
 end
