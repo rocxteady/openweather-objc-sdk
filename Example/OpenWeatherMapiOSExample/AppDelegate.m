@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import <openweather_obj_sdk/OWMSDK.h>
-#import <openweather_obj_sdk/OWMParams.h>
+#import <openweathermap_objc_sdk/OWMSDK.h>
+#import <openweathermap_objc_sdk/OWMParams.h>
 @interface AppDelegate ()
 
 @end

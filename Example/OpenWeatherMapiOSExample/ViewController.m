@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <openweather_obj_sdk/OWMAPIClient.h>
+#import <openweathermap_objc_sdk/OWMAPIClient.h>
 
 @interface ViewController ()
 
