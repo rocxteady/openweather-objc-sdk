@@ -1,6 +1,6 @@
 # openweathermap-objc-sdk
 
-[![CI Status](http://img.shields.io/travis/Ulaş Sancak/openweathermap-objc-sdk.svg?style=flat)](https://travis-ci.org/rocxteady/openweathermap-objc-sdk)
+[![CI Status](http://img.shields.io/travis/rocxteady/openweathermap-objc-sdk.svg?style=flat)](https://travis-ci.org/rocxteady/openweathermap-objc-sdk)
 [![Version](https://img.shields.io/cocoapods/v/openweathermap-objc-sdk.svg?style=flat)](http://cocoapods.org/pods/openweathermap-objc-sdk)
 [![License](https://img.shields.io/cocoapods/l/openweathermap-objc-sdk.svg?style=flat)](http://cocoapods.org/pods/openweathermap-objc-sdk)
 [![Platform](https://img.shields.io/cocoapods/p/openweathermap-objc-sdk.svg?style=flat)](http://cocoapods.org/pods/openweathermap-objc-sdk)
