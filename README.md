@@ -30,6 +30,8 @@ pod "openweathermap-objc-sdk"
 ```
 ###### Getting Current Conditions for Several Cities
 ```
+#import <openweathermap_objc_sdk/OWMSDK.h>
+
 [[OWMAPIClient client] getWeatherByCityIDs:@[@524901,@703448,@2643743] limitResultByCount:0 block:^(OWMWeatherArrayResult *result, NSError *error) {
     if (!error && [result.code isEqual:@"200"]) {
         //Data received
@@ -38,6 +40,8 @@ pod "openweathermap-objc-sdk"
 ```
 ###### Getting Hourly Forecast
 ```
+#import <openweathermap_objc_sdk/OWMSDK.h>
+
 [[OWMAPIClient client] getForecastByCityName:@"istanbul" countryCode:@"tr" limitResultByCount:0 block:^(OWMWeatherArrayResult *result, NSError *error) {
     if (!error && [result.code isEqual:@"200"]) {
         //Data received
@@ -46,6 +50,8 @@ pod "openweathermap-objc-sdk"
 ```
 ###### Getting Daily Forecast
 ```
+#import <openweathermap_objc_sdk/OWMSDK.h>
+
 [[OWMAPIClient client] getDailyForecastByCityName:@"istanbul" countryCode:@"tr" limitResultByCount:0 block:^(OWMDailyForecastResult *result, NSError *error) {
     if (!error && [result.code isEqual:@"200"]) {
         //Data received
