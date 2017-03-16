@@ -9,8 +9,6 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
-
 ## Installation
 
 openweathermap-objc-sdk is available through [CocoaPods](http://cocoapods.org). To install
@@ -18,6 +16,41 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod "openweathermap-objc-sdk"
+```
+## Usage
+###### Getting Current Conditions
+```
+#import <openweathermap_objc_sdk/OWMSDK.h>
+
+[[OWMAPIClient client] getWeatherByCityName:@"istanbul" block:^(OWMWeather *weatherData, NSError *error) {
+    if (!error && [weatherData.code isEqual:@"200"]) {
+        //Data received
+    }
+}];
+```
+###### Getting Current Conditions for Several Cities
+```
+[[OWMAPIClient client] getWeatherByCityIDs:@[@524901,@703448,@2643743] limitResultByCount:0 block:^(OWMWeatherArrayResult *result, NSError *error) {
+    if (!error && [result.code isEqual:@"200"]) {
+        //Data received
+    }
+}];
+```
+###### Getting Hourly Forecast
+```
+[[OWMAPIClient client] getForecastByCityName:@"istanbul" countryCode:@"tr" limitResultByCount:0 block:^(OWMWeatherArrayResult *result, NSError *error) {
+    if (!error && [result.code isEqual:@"200"]) {
+        //Data received
+    }
+}];
+```
+###### Getting Daily Forecast
+```
+[[OWMAPIClient client] getDailyForecastByCityName:@"istanbul" countryCode:@"tr" limitResultByCount:0 block:^(OWMDailyForecastResult *result, NSError *error) {
+    if (!error && [result.code isEqual:@"200"]) {
+        //Data received
+    }
+}];
 ```
 
 ## Author
