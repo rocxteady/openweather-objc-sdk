@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+#warning Initialize with your API key
     [OWMClient clientWithAppID:@"dc734285acbc53fac9f427cf17f731e8"];
     [OWMParams defaultParams].unitsFormat = OWMUnitsFormatMetric;
     return YES;
