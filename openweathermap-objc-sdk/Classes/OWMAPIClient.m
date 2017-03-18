@@ -56,6 +56,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 #pragma mark - Current Weather
 
 - (void)getWeatherByCityName:(NSString *)cityName block:(OWMWeatherBlock)block {
+    NSAssert(cityName.length > 0, @"cityName cannot be nil.");
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"q": cityName} withBlock:^(NSDictionary *response, NSError *error) {
         OWMWeather *weatherData = nil;
         if (!error) {
@@ -66,6 +67,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getWeatherByCityName:(NSString *)cityName countryCode:(NSString *)countryCode block:(OWMWeatherBlock)block {
+    NSAssert(cityName.length > 0, @"cityName cannot be nil.");
+    NSAssert(countryCode.length > 0, @"countryCode cannot be nil.");
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"q": [NSString stringWithFormat:@"%@,%@", cityName, countryCode]} withBlock:^(NSDictionary *response, NSError *error) {
         OWMWeather *weatherData = nil;
         if (!error) {
@@ -76,6 +79,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getWeatherByCityID:(NSUInteger)cityID block:(OWMWeatherBlock)block {
+    NSAssert(cityID > 0, @"cityID cannot be 0.");
      [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"id": @(cityID)} withBlock:^(NSDictionary *response, NSError *error) {
          OWMWeather *weatherData = nil;
          if (!error) {
@@ -86,6 +90,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getWeatherByCoordinates:(OWMCoordinates *)coordinates block:(OWMWeatherBlock)block {
+    NSAssert(coordinates, @"coordinates cannot be nil.");
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude)} withBlock:^(NSDictionary *response, NSError *error) {
         OWMWeather *weatherData = nil;
         if (!error) {
@@ -96,6 +101,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getWeatherByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode block:(OWMWeatherBlock)block {
+    NSAssert(ZIPCode, @"ZIPCode cannot be nil.");
+    NSAssert(countryCode, @"countryCode cannot be nil.");
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeWeather] withParameters:@{@"zip": [NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode]} withBlock:^(NSDictionary *response, NSError *error) {
         OWMWeather *weatherData = nil;
         if (!error) {
@@ -108,6 +115,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 #pragma mark - Current Weather for Several Cities
 
 - (void)getWeatherByCityIDs:(NSArray *)cityIDs limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSAssert(cityIDs.count > 0, @"cityIDs must contain at least one city ID.");
     NSString *cityIDsString = [cityIDs componentsJoinedByString:@","];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityIDsString, @"id", nil];
     if (count > 0) {
@@ -123,6 +131,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getWeatherByRectangleZone:(NSString *)zone limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSArray *elemets = [zone componentsSeparatedByString:@","];
+    NSAssert(elemets.count == 5, @"zone format is incorrect. It must be like \"lon-left,lat-bottom,lon-right,lat-top,zoom\".");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:zone, @"bbox", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -137,6 +147,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getWeatherByCycleZoneWithCoordinates:(OWMCoordinates *)coordinates countOfCity:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSAssert(coordinates, @"coordinates cannot be nil.");
     [self getWithURL:[NSString stringWithFormat:@"%@/%@/%@/%@", BaseURL, DataURI, Version, APITypeFind] withParameters:@{@"lat": @(coordinates.latitude), @"lon": @(coordinates.longitude), @"cnt": @(count)} withBlock:^(NSDictionary *response, NSError *error) {
         OWMWeatherArrayResult *result = nil;
         if (!error) {
@@ -149,6 +160,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 #pragma mark - Hourly Forecast
 
 - (void)getForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSAssert(cityName.length > 0, @"cityName cannot be nil.");
+    NSAssert(countryCode.length > 0, @"countryCode cannot be nil.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -163,6 +176,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSAssert(cityID > 0, @"cityID cannot be 0.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(cityID), @"id", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -177,6 +191,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSAssert(coordinates, @"coordinates cannot be nil.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(coordinates.latitude), @"lat", @(coordinates.longitude), @"lon", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -191,6 +206,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherArrayResultBlock)block {
+    NSAssert(ZIPCode, @"ZIPCode cannot be nil.");
+    NSAssert(countryCode, @"countryCode cannot be nil.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode], @"zip", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -207,6 +224,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 #pragma mark - Daily Forecast
 
 - (void)getDailyForecastByCityName:(NSString *)cityName countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    NSAssert(cityName.length > 0, @"cityName cannot be nil.");
+    NSAssert(countryCode.length > 0, @"countryCode cannot be nil.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:cityName, @"q", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -221,6 +240,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getDailyForecastByCityID:(NSUInteger)cityID limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    NSAssert(cityID > 0, @"cityID cannot be 0.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(cityID), @"id", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -235,6 +255,7 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getDailyForecastByCoordinates:(OWMCoordinates *)coordinates limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    NSAssert(coordinates, @"coordinates cannot be nil.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(coordinates.latitude), @"lat", @(coordinates.longitude), @"lon", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
@@ -249,6 +270,8 @@ typedef void(^OWMClientResponseBlock)(NSDictionary *response, NSError *error);
 }
 
 - (void)getDailyForecastByCityZIPCode:(NSString *)ZIPCode countryCode:(NSString *)countryCode limitResultByCount:(NSUInteger)count block:(OWMWeatherDailyForecastResultBlock)block {
+    NSAssert(ZIPCode, @"ZIPCode cannot be nil.");
+    NSAssert(countryCode, @"countryCode cannot be nil.");
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@", ZIPCode, countryCode], @"zip", nil];
     if (count > 0) {
         params[@"cnt"] = @(count);
